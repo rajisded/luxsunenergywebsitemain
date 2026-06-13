@@ -14,6 +14,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Validate email format
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: "Invalid email address format." },
+        { status: 400 }
+      );
+    }
+
+    // Validate Indian phone number (allow optional spaces, hyphens, and parens)
+    const cleanPhone = phone.replace(/[\s\-\(\)]/g, "");
+    const phoneRegex = /^(?:\+91|91|0)?[6-9]\d{9}$/;
+    if (!phoneRegex.test(cleanPhone)) {
+      return NextResponse.json(
+        { error: "Invalid Indian phone number. Must be a valid 10-digit number." },
+        { status: 400 }
+      );
+    }
+
     // Save to Supabase via Prisma
     const quoteRequest = await prisma.quoteRequest.create({
       data: {

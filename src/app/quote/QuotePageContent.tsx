@@ -25,8 +25,26 @@ export default function QuotePageContent() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setStatus("submitting");
     setErrorMsg("");
+
+    // Validate email
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(formData.email)) {
+      setErrorMsg("Please enter a valid email address.");
+      setStatus("error");
+      return;
+    }
+
+    // Validate Indian phone number (allow spaces, hyphens, and parenthesis)
+    const cleanPhone = formData.phone.replace(/[\s\-\(\)]/g, "");
+    const phoneRegex = /^(?:\+91|91|0)?[6-9]\d{9}$/;
+    if (!phoneRegex.test(cleanPhone)) {
+      setErrorMsg("Please enter a valid 10-digit Indian phone number (e.g., +91 98765 43210).");
+      setStatus("error");
+      return;
+    }
+
+    setStatus("submitting");
 
     try {
       const res = await fetch("/api/quote", {
