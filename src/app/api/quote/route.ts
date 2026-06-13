@@ -23,10 +23,25 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Validate Indian phone number (allow optional spaces, hyphens, and parens)
-    const cleanPhone = phone.replace(/[\s\-\(\)]/g, "");
-    const phoneRegex = /^(?:\+91|91|0)?[6-9]\d{9}$/;
-    if (!phoneRegex.test(cleanPhone)) {
+    // Validate Indian phone number
+    const validateIndianPhone = (ph: string): boolean => {
+      const cleaned = ph.replace(/[^\d+]/g, "");
+      if (cleaned.startsWith("+91")) {
+        return /^[6-9]\d{9}$/.test(cleaned.slice(3));
+      }
+      if (cleaned.length === 10) {
+        return /^[6-9]\d{9}$/.test(cleaned);
+      }
+      if (cleaned.length === 11 && cleaned.startsWith("0")) {
+        return /^[6-9]\d{9}$/.test(cleaned.slice(1));
+      }
+      if (cleaned.length === 12 && cleaned.startsWith("91")) {
+        return /^[6-9]\d{9}$/.test(cleaned.slice(2));
+      }
+      return false;
+    };
+
+    if (!validateIndianPhone(phone)) {
       return NextResponse.json(
         { error: "Invalid Indian phone number. Must be a valid 10-digit number." },
         { status: 400 }

@@ -35,10 +35,25 @@ export default function QuotePageContent() {
       return;
     }
 
-    // Validate Indian phone number (allow spaces, hyphens, and parenthesis)
-    const cleanPhone = formData.phone.replace(/[\s\-\(\)]/g, "");
-    const phoneRegex = /^(?:\+91|91|0)?[6-9]\d{9}$/;
-    if (!phoneRegex.test(cleanPhone)) {
+    // Validate Indian phone number
+    const validateIndianPhone = (phone: string): boolean => {
+      const cleaned = phone.replace(/[^\d+]/g, "");
+      if (cleaned.startsWith("+91")) {
+        return /^[6-9]\d{9}$/.test(cleaned.slice(3));
+      }
+      if (cleaned.length === 10) {
+        return /^[6-9]\d{9}$/.test(cleaned);
+      }
+      if (cleaned.length === 11 && cleaned.startsWith("0")) {
+        return /^[6-9]\d{9}$/.test(cleaned.slice(1));
+      }
+      if (cleaned.length === 12 && cleaned.startsWith("91")) {
+        return /^[6-9]\d{9}$/.test(cleaned.slice(2));
+      }
+      return false;
+    };
+
+    if (!validateIndianPhone(formData.phone)) {
       setErrorMsg("Please enter a valid 10-digit Indian phone number (e.g., +91 98765 43210).");
       setStatus("error");
       return;
