@@ -2,81 +2,105 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import styles from "./Hero.module.css";
 
 export default function Hero() {
   return (
-    <section className={styles.heroSection}>
-      <div className={styles.heroBackground}>
-        <img 
-          src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1920&q=80" 
-          alt="Solar Panels" 
-        />
-        <div className={styles.overlay}></div>
+    <section className={styles.hero}>
+      {/* Ambient gradient orbs */}
+      <div className={styles.ambientOrb1} />
+      <div className={styles.ambientOrb2} />
+      <div className={styles.ambientOrb3} />
+
+      {/* Star particles */}
+      <div className={styles.stars}>
+        {Array.from({ length: 60 }).map((_, i) => (
+          <div
+            key={i}
+            className={styles.star}
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+              width: `${1 + Math.random() * 2}px`,
+              height: `${1 + Math.random() * 2}px`,
+              animationDelay: `${Math.random() * 5}s`,
+              animationDuration: `${2 + Math.random() * 3}s`,
+            }}
+          />
+        ))}
       </div>
 
-      <div className={`container ${styles.heroContent}`}>
+      <div className={`container ${styles.content}`}>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className={styles.heroTextContainer}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className={styles.textBlock}
         >
-          <motion.span 
-            initial={{ opacity: 0, scale: 0.8 }}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.5 }}
-            className={styles.badge}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className={styles.tagline}
           >
-            Desh Ka Solar
-          </motion.span>
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-          >
-            Leading the Way in <span className={styles.highlight}>Sustainable</span> Energy Solutions
-          </motion.h1>
+            <Sparkles size={14} />
+            <span>Desh Ka Solar — Since 2021</span>
+          </motion.div>
+
+          <h1 className={styles.headline}>
+            <span className={styles.headlineMain}>LUXSUN</span>
+            <span className={styles.headlineSub}>ENERGY INDIA</span>
+          </h1>
+
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ delay: 0.5, duration: 0.8 }}
+            className={styles.description}
           >
-            We engineer high-performance systems for residential, commercial, and agricultural needs. Clean energy is now affordable and accessible for everyone.
+            Pioneering sustainable energy solutions across India. We engineer
+            premium solar systems for residential, commercial, and agricultural
+            needs — making clean power accessible to everyone.
           </motion.p>
-          
-          <motion.div 
-            className={styles.heroActions}
+
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.7, duration: 0.8 }}
+            className={styles.actions}
           >
-            <Link href="#quote" className="btn btn-primary" style={{ padding: '1rem 2rem', fontSize: '1.1rem' }}>
-              Start Your Journey <ArrowRight size={20} />
+            <Link href="/quote" className="btn btn-primary">
+              Start Your Journey <ArrowRight size={18} />
             </Link>
-            <Link href="#about" className="btn btn-outline" style={{ borderColor: 'var(--text-on-primary)', color: 'var(--text-on-primary)', padding: '1rem 2rem', fontSize: '1.1rem' }}>
-              Learn More
+            <Link href="#about" className="btn btn-outline">
+              Discover More
             </Link>
           </motion.div>
         </motion.div>
 
-        <motion.div 
-          className={styles.heroStats}
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.9, duration: 0.8 }}
+          className={styles.statsRow}
         >
-          <div className={styles.statCard}>
-            <div className={styles.statValue}>5.0 ★</div>
-            <div className={styles.statLabel}>Satna Google Rating</div>
-          </div>
-          <div className={styles.statCard}>
-            <div className={styles.statValue}>4.9 ★</div>
-            <div className={styles.statLabel}>Rewa Google Rating</div>
-          </div>
+          {[
+            { value: "500+", label: "Installations" },
+            { value: "2.5MW+", label: "Capacity" },
+            { value: "5.0★", label: "Google Rating" },
+            { value: "400+", label: "Happy Clients" },
+          ].map((stat, idx) => (
+            <div key={idx} className={styles.statItem}>
+              <span className={styles.statValue}>{stat.value}</span>
+              <span className={styles.statLabel}>{stat.label}</span>
+            </div>
+          ))}
         </motion.div>
       </div>
+
+      {/* Bottom gradient fade */}
+      <div className={styles.bottomFade} />
     </section>
   );
 }

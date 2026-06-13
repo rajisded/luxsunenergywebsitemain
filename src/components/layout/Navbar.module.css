@@ -6,32 +6,49 @@
   z-index: 50;
   transition: all var(--transition-normal);
   padding: 1.5rem 0;
-  background: transparent;
+}
+
+.headerBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 70%, transparent 100%);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
 }
 
 .scrolled {
-  background: var(--bg-glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 1rem 0;
-  box-shadow: var(--shadow-sm);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+  padding: 0.75rem 0;
+}
+
+.scrolled .headerBg {
+  background: rgba(3, 7, 18, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  mask-image: none;
+  -webkit-mask-image: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .navContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
+  z-index: 10;
 }
 
 .logo img {
-  height: 48px;
+  height: 44px;
   width: auto;
   transition: height var(--transition-fast);
+  filter: brightness(1.1);
 }
 
 .scrolled .logo img {
-  height: 40px;
+  height: 36px;
 }
 
 .desktopNav {
@@ -48,23 +65,15 @@
 
 .navLink {
   font-weight: 500;
-  font-size: 1.05rem;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.5);
+  transition: color var(--transition-normal);
   position: relative;
 }
 
-.navLink::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 2px;
-  bottom: -4px;
-  left: 0;
-  background-color: var(--color-primary);
-  transition: width var(--transition-fast);
-}
-
-.navLink:hover::after {
-  width: 100%;
+.navLink:hover {
+  color: #ffffff;
 }
 
 .navActions {
@@ -73,9 +82,43 @@
   gap: 1rem;
 }
 
+.ctaButton {
+  display: none;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-full);
+  transition: all var(--transition-normal);
+  font-family: var(--font-body);
+}
+
+@media (min-width: 1024px) {
+  .ctaButton {
+    display: inline-flex;
+  }
+}
+
+.ctaButton:hover {
+  color: #ffffff;
+  border-color: rgba(245, 158, 11, 0.4);
+  background: rgba(245, 158, 11, 0.08);
+  box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);
+}
+
 .mobileToggle {
   display: block;
-  color: var(--color-primary);
+  color: rgba(255, 255, 255, 0.8);
+  padding: 0.5rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.mobileToggle:hover {
+  background: rgba(255, 255, 255, 0.05);
 }
 
 @media (min-width: 1024px) {
@@ -84,17 +127,28 @@
   }
 }
 
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 90;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Drawer */
 .mobileDrawer {
   position: fixed;
   top: 0;
   right: 0;
   bottom: 0;
   width: 100%;
-  max-width: 400px;
-  background: var(--bg-main);
+  max-width: 380px;
+  background: var(--bg-secondary);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
   z-index: 100;
   padding: 2rem;
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
 }
@@ -107,18 +161,38 @@
 }
 
 .logoImage {
-  height: 40px;
+  height: 36px;
+  filter: brightness(1.1);
 }
 
 .mobileLinks {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  font-size: 1.5rem;
-  font-weight: 600;
-  font-family: var(--font-heading);
+  gap: 2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  font-family: var(--font-body);
+  letter-spacing: 0.12em;
 }
 
 .mobileLinks a {
-  color: var(--text-main);
+  color: rgba(255, 255, 255, 0.5);
+  transition: color var(--transition-normal);
+}
+
+.mobileLinks a:hover {
+  color: #ffffff;
+}
+
+.mobileCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+  color: var(--bg-main) !important;
+  border-radius: var(--radius-full);
+  font-weight: 700;
+  letter-spacing: 0.02em !important;
 }

@@ -1,30 +1,33 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Sun, Battery, Zap } from "lucide-react";
+import { Sun, Battery, Zap, ArrowUpRight } from "lucide-react";
 import styles from "./Products.module.css";
 
 const products = [
   {
     id: "on-grid",
     title: "On-Grid Solar",
-    desc: "Connects directly to the public utility grid. Ideal for residential households looking to reduce monthly electricity costs using net metering benefits.",
-    icon: <Sun size={32} />,
-    image: "https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=600&q=80",
+    desc: "Connected to the public utility grid. Ideal for residential households looking to reduce monthly electricity costs with net metering benefits.",
+    icon: <Sun size={24} />,
+    gradient: "linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(245, 158, 11, 0.02))",
+    borderColor: "rgba(245, 158, 11, 0.15)",
   },
   {
     id: "off-grid",
     title: "Off-Grid Solar",
-    desc: "Runs independently with a dedicated battery storage bank. Perfect for remote structures, farmhouses, and areas with frequent grid blackouts.",
-    icon: <Battery size={32} />,
-    image: "https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=600&q=80",
+    desc: "Operates independently with dedicated battery storage. Perfect for remote locations, farmhouses, and areas with frequent power outages.",
+    icon: <Battery size={24} />,
+    gradient: "linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(59, 130, 246, 0.02))",
+    borderColor: "rgba(59, 130, 246, 0.15)",
   },
   {
     id: "hybrid",
     title: "Hybrid Solar",
-    desc: "Combines grid connection with smart battery storage backup. Ensures seamless electrical power during blackouts while offering net metering savings.",
-    icon: <Zap size={32} />,
-    image: "https://images.unsplash.com/photo-1592833159155-c62df1b65634?auto=format&fit=crop&w=600&q=80",
+    desc: "Combines grid connection with intelligent battery backup. Ensures uninterrupted power during blackouts while maintaining net metering savings.",
+    icon: <Zap size={24} />,
+    gradient: "linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(16, 185, 129, 0.02))",
+    borderColor: "rgba(16, 185, 129, 0.15)",
   },
 ];
 
@@ -33,22 +36,26 @@ export default function Products() {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.2 },
+      transition: { staggerChildren: 0.15 },
     },
   };
 
   const itemVars = {
     hidden: { opacity: 0, y: 30 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
   };
 
   return (
-    <section className="section-padding" id="products">
+    <section className={styles.section} id="products">
       <div className="container">
-        <div className={styles.sectionHeader}>
+        <div className={styles.header}>
           <span className="badge">Our Solutions</span>
-          <h2 className="section-title">Comprehensive Energy Solutions</h2>
-          <p className="section-desc">We offer customized solar systems designed to meet your specific energy needs, providing maximum efficiency and long-term savings.</p>
+          <h2 className="section-title">Comprehensive Energy Systems</h2>
+          <p className="section-desc" style={{ margin: "0 auto" }}>
+            We deliver customized solar installations engineered for maximum
+            efficiency and long-term savings across residential, commercial, and
+            agricultural applications.
+          </p>
         </div>
 
         <motion.div
@@ -59,17 +66,21 @@ export default function Products() {
           className={styles.grid}
         >
           {products.map((product) => (
-            <motion.div key={product.id} variants={itemVars} className={styles.card}>
-              <div className={styles.imageWrapper}>
-                <img src={product.image} alt={product.title} />
-                <div className={styles.iconWrapper}>
-                  {product.icon}
-                </div>
-              </div>
-              <div className={styles.content}>
-                <h3>{product.title}</h3>
-                <p>{product.desc}</p>
-                <button className={styles.learnMore}>Learn More →</button>
+            <motion.div
+              key={product.id}
+              variants={itemVars}
+              className={styles.card}
+              style={{
+                background: product.gradient,
+                borderColor: product.borderColor,
+              }}
+            >
+              <div className={styles.cardIcon}>{product.icon}</div>
+              <h3 className={styles.cardTitle}>{product.title}</h3>
+              <p className={styles.cardDesc}>{product.desc}</p>
+              <div className={styles.cardLink}>
+                <span>Learn More</span>
+                <ArrowUpRight size={16} />
               </div>
             </motion.div>
           ))}
