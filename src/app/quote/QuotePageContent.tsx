@@ -7,7 +7,8 @@ import { Send, CheckCircle, ArrowLeft, Sparkles } from "lucide-react";
 import styles from "./QuotePage.module.css";
 
 export default function QuotePageContent() {
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,12 +23,28 @@ export default function QuotePageContent() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("submitting");
-    setTimeout(() => {
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/quote", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Something went wrong.");
+      }
+
       setStatus("success");
-    }, 1500);
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : "Something went wrong.");
+      setStatus("error");
+    }
   };
 
   return (
@@ -201,6 +218,10 @@ export default function QuotePageContent() {
                     </select>
                   </div>
                 </div>
+
+                {status === "error" && (
+                  <div className={styles.errorMsg}>{errorMsg}</div>
+                )}
 
                 <button
                   type="submit"
