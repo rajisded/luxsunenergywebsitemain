@@ -11,7 +11,7 @@
   transform: translateX(-50%);
   width: 1px;
   height: 100%;
-  background: linear-gradient(to bottom, transparent, rgba(245, 158, 11, 0.1), transparent);
+  background: linear-gradient(to bottom, transparent, rgba(217, 119, 6, 0.05), transparent);
 }
 
 .grid {
@@ -35,25 +35,25 @@
   position: relative;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-color);
 }
 
 .mainImage {
   width: 100%;
   height: auto;
   display: block;
-  filter: brightness(0.7) contrast(1.1);
-  transition: filter var(--transition-slow);
+  filter: contrast(1.02);
+  transition: all var(--transition-slow);
 }
 
 .imageWrapper:hover .mainImage {
-  filter: brightness(0.8) contrast(1.1);
+  transform: scale(1.02);
 }
 
 .glowOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, transparent 50%, rgba(59, 130, 246, 0.05) 100%);
+  background: linear-gradient(135deg, rgba(217, 119, 6, 0.05) 0%, transparent 50%, rgba(29, 78, 216, 0.03) 100%);
   pointer-events: none;
 }
 
@@ -62,8 +62,8 @@
   bottom: -1.5rem;
   right: -1.5rem;
   background: var(--bg-secondary);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 1.5rem 2rem;
+  border: 1px solid var(--border-color);
+  padding: 1.25rem 1.75rem;
   border-radius: var(--radius-lg);
   display: flex;
   flex-direction: column;
@@ -80,14 +80,14 @@
 
 .floatingValue {
   font-family: var(--font-heading);
-  font-size: 2.5rem;
+  font-size: 2rem;
   font-weight: 800;
   color: var(--color-accent);
   line-height: 1;
 }
 
 .floatingLabel {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--text-light);
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -125,7 +125,7 @@
   gap: 0.75rem;
   font-weight: 500;
   color: var(--text-muted);
-  font-size: 0.95rem;
+  font-size: 0.875rem;
 }
 
 .featureIcon {

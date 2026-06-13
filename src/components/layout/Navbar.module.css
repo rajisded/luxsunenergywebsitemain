@@ -11,7 +11,7 @@
 .headerBg {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.1) 70%, transparent 100%);
+  background: linear-gradient(to bottom, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.2) 70%, transparent 100%);
   backdrop-filter: blur(3px);
   -webkit-backdrop-filter: blur(3px);
   mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 70%, rgba(0,0,0,0) 100%);
@@ -24,12 +24,12 @@
 }
 
 .scrolled .headerBg {
-  background: rgba(3, 7, 18, 0.85);
+  background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   mask-image: none;
   -webkit-mask-image: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .navContainer {
@@ -44,7 +44,7 @@
   height: 44px;
   width: auto;
   transition: height var(--transition-fast);
-  filter: brightness(1.1);
+  filter: none;
 }
 
 .scrolled .logo img {
@@ -65,15 +65,15 @@
 
 .navLink {
   font-weight: 500;
-  font-size: 0.85rem;
-  letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
   transition: color var(--transition-normal);
   position: relative;
 }
 
 .navLink:hover {
-  color: #ffffff;
+  color: var(--text-main);
 }
 
 .navActions {
@@ -86,11 +86,11 @@
   display: none;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.6rem 1.5rem;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.5rem 1.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
   border-radius: var(--radius-full);
   transition: all var(--transition-normal);
   font-family: var(--font-body);
@@ -103,22 +103,22 @@
 }
 
 .ctaButton:hover {
-  color: #ffffff;
-  border-color: rgba(245, 158, 11, 0.4);
-  background: rgba(245, 158, 11, 0.08);
-  box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);
+  color: var(--text-main);
+  border-color: var(--color-accent);
+  background: rgba(217, 119, 6, 0.05);
+  box-shadow: 0 0 20px rgba(217, 119, 6, 0.06);
 }
 
 .mobileToggle {
   display: block;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-main);
   padding: 0.5rem;
   border-radius: var(--radius-sm);
   transition: background var(--transition-fast);
 }
 
 .mobileToggle:hover {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(15, 23, 42, 0.04);
 }
 
 @media (min-width: 1024px) {
@@ -131,7 +131,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(15, 23, 42, 0.3);
   z-index: 90;
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -146,7 +146,7 @@
   width: 100%;
   max-width: 380px;
   background: var(--bg-secondary);
-  border-left: 1px solid rgba(255, 255, 255, 0.05);
+  border-left: 1px solid var(--border-color);
   z-index: 100;
   padding: 2rem;
   display: flex;
@@ -162,26 +162,35 @@
 
 .logoImage {
   height: 36px;
-  filter: brightness(1.1);
+  filter: none;
+}
+
+.closeIcon {
+  color: var(--text-main);
+  transition: opacity var(--transition-fast);
+}
+
+.closeIcon:hover {
+  opacity: 0.7;
 }
 
 .mobileLinks {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 0.95rem;
+  font-weight: 600;
   font-family: var(--font-body);
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
 }
 
 .mobileLinks a {
-  color: rgba(255, 255, 255, 0.5);
+  color: var(--text-muted);
   transition: color var(--transition-normal);
 }
 
 .mobileLinks a:hover {
-  color: #ffffff;
+  color: var(--text-main);
 }
 
 .mobileCta {
@@ -189,10 +198,11 @@
   align-items: center;
   gap: 0.75rem;
   margin-top: 1.5rem;
-  padding: 1rem 2rem;
+  padding: 0.85rem 1.75rem;
   background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
-  color: var(--bg-main) !important;
+  color: #ffffff !important;
   border-radius: var(--radius-full);
   font-weight: 700;
-  letter-spacing: 0.02em !important;
+  font-size: 0.875rem;
+  letter-spacing: 0.01em !important;
 }

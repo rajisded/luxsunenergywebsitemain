@@ -77,7 +77,7 @@ export default function Navbar() {
               <div className={styles.drawerHeader}>
                 <img src="/logo.png" alt="Luxsun Energy" className={styles.logoImage} />
                 <button onClick={() => setIsMobileMenuOpen(false)} aria-label="Close menu">
-                  <X size={28} color="#fff" />
+                  <X size={28} className={styles.closeIcon} />
                 </button>
               </div>
               <nav className={styles.mobileLinks}>
