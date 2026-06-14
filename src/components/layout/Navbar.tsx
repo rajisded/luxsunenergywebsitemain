@@ -39,7 +39,7 @@ export default function Navbar() {
             src="/logo.png"
             alt="Luxsun Energy"
             className={`transition-all duration-300 object-contain ${
-              isScrolled ? "h-12" : "h-16"
+              isScrolled ? "h-16" : "h-20"
             }`}
           />
         </Link>
@@ -96,7 +96,7 @@ export default function Navbar() {
               className="fixed top-0 right-0 bottom-0 w-full max-w-[320px] bg-white border-l border-black/10 p-8 z-50 flex flex-col"
             >
               <div className="flex justify-between items-center mb-12">
-                <img src="/logo.png" alt="Luxsun Energy" className="h-12 object-contain" />
+                <img src="/logo.png" alt="Luxsun Energy" className="h-16 object-contain" />
                 <button
                   onClick={() => setIsMobileMenuOpen(false)}
                   aria-label="Close menu"
