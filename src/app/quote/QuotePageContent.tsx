@@ -13,6 +13,7 @@ export default function QuotePageContent() {
     name: "",
     email: "",
     phone: "",
+    category: "Residential",
     requirement: "On-Grid System",
     urgency: "Immediate",
   });
@@ -241,17 +242,32 @@ export default function QuotePageContent() {
                   </div>
                 </div>
 
-                <div className={styles.field}>
-                  <label htmlFor="email">Email Address</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    placeholder="you@example.com"
-                    value={formData.email}
-                    onChange={handleChange}
-                  />
+                <div className={styles.fieldGroup}>
+                  <div className={styles.field}>
+                    <label htmlFor="email">Email Address</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      placeholder="you@example.com"
+                      value={formData.email}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className={styles.field}>
+                    <label htmlFor="category">Category</label>
+                    <select
+                      id="category"
+                      name="category"
+                      value={formData.category}
+                      onChange={handleChange}
+                    >
+                      <option value="Residential">Residential</option>
+                      <option value="Commercial">Commercial</option>
+                      <option value="Industrial">Industrial</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div className={styles.fieldGroup}>

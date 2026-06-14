@@ -4,10 +4,10 @@ import { prisma } from "@/lib/prisma";
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { name, email, phone, requirement, urgency } = body;
+    const { name, email, phone, category, requirement, urgency } = body;
 
     // Validate required fields
-    if (!name || !email || !phone || !requirement || !urgency) {
+    if (!name || !email || !phone || !category || !requirement || !urgency) {
       return NextResponse.json(
         { error: "All fields are required." },
         { status: 400 }
@@ -54,6 +54,7 @@ export async function POST(request: NextRequest) {
         name,
         email,
         phone,
+        category,
         requirement,
         urgency,
       },

@@ -11,6 +11,7 @@ export default function QuoteForm() {
     name: "",
     email: "",
     phone: "",
+    category: "Residential",
     requirement: "On-Grid System",
     urgency: "Immediate",
   });
@@ -112,17 +113,34 @@ export default function QuoteForm() {
           </div>
         </div>
 
-        <div className={styles.field}>
-          <label htmlFor="email">Email Address</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            required
-            placeholder="john@example.com"
-            value={formData.email}
-            onChange={handleChange}
-          />
+        <div className={styles.inputGroup}>
+          <div className={styles.field}>
+            <label htmlFor="email">Email Address</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+              placeholder="john@example.com"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </div>
+          <div className={styles.field}>
+            <label htmlFor="category">Category</label>
+            <div className={styles.selectWrapper}>
+              <select
+                id="category"
+                name="category"
+                value={formData.category}
+                onChange={handleChange}
+              >
+                <option value="Residential">Residential</option>
+                <option value="Commercial">Commercial</option>
+                <option value="Industrial">Industrial</option>
+              </select>
+            </div>
+          </div>
         </div>
 
         <div className={styles.inputGroup}>
