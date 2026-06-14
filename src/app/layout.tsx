@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Luxsun Energy India | Premium Solar Solutions",
@@ -15,10 +14,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>
+      <body className="premium-noise">
         <Navbar />
         {children}
-        <Footer />
       </body>
     </html>
   );

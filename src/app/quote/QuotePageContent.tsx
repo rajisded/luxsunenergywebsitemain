@@ -4,6 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Send, CheckCircle, ArrowLeft, Sparkles } from "lucide-react";
+import Footer from "@/components/layout/Footer";
 import styles from "./QuotePage.module.css";
 
 export default function QuotePageContent() {
@@ -327,6 +328,7 @@ export default function QuotePageContent() {
           </div>
         )}
       </div>
+      <Footer />
     </main>
   );
 }
