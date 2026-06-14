@@ -41,14 +41,14 @@
 }
 
 .logo img {
-  height: 44px;
+  height: 60px;
   width: auto;
   transition: height var(--transition-fast);
   filter: none;
 }
 
 .scrolled .logo img {
-  height: 36px;
+  height: 48px;
 }
 
 .desktopNav {
@@ -161,7 +161,7 @@
 }
 
 .logoImage {
-  height: 36px;
+  height: 48px;
   filter: none;
 }
 

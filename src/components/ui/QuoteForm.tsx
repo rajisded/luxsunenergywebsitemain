@@ -16,7 +16,17 @@ export default function QuoteForm() {
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    let value = e.target.value;
+    if (e.target.name === "phone") {
+      const cleaned = value.replace(/\D/g, "");
+      e.target.value = cleaned;
+      value = cleaned;
+    } else if (e.target.name === "email") {
+      const cleaned = value.toLowerCase().replace(/\s+/g, "");
+      e.target.value = cleaned;
+      value = cleaned;
+    }
+    setFormData({ ...formData, [e.target.name]: value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -77,6 +87,27 @@ export default function QuoteForm() {
               placeholder="+91 98765 43210"
               value={formData.phone}
               onChange={handleChange}
+              onKeyDown={(e) => {
+                const isDigit = /^[0-9]$/.test(e.key);
+                const isControl = [
+                  "Backspace",
+                  "Delete",
+                  "Tab",
+                  "Escape",
+                  "Enter",
+                  "ArrowLeft",
+                  "ArrowRight",
+                  "Home",
+                  "End",
+                ].includes(e.key);
+                const isCmdCombination =
+                  (e.ctrlKey || e.metaKey) &&
+                  ["a", "c", "v", "x", "z"].includes(e.key.toLowerCase());
+
+                if (!isDigit && !isControl && !isCmdCombination) {
+                  e.preventDefault();
+                }
+              }}
             />
           </div>
         </div>
