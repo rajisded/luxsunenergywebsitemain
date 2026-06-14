@@ -39,23 +39,6 @@ export default function Home() {
         ]}
       />
 
-      {/* Slide 3: Powerbank (Home Storage) */}
-      <ProductSection
-        id="powerbank"
-        title="Luxsun Powerbank"
-        subtitle="Compact Storage for Total Outage Protection"
-        bgImage="https://images.unsplash.com/photo-1595246140625-573b715d11dc?q=80&w=2070&auto=format&fit=crop"
-        specs={[
-          { label: "13.5 kWh", value: "Capacity" },
-          { label: "10-Year", value: "Warranty" },
-          { label: "Seamless", value: "Backup Switch" },
-        ]}
-        ctas={[
-          { text: "Get a Quote", href: "/quote", primary: true },
-          { text: "Learn More", href: "/#why-luxsun" },
-        ]}
-      />
-
       {/* Slide 4: Commercial Energy */}
       <ProductSection
         id="commercial"
