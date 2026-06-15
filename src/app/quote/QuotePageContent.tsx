@@ -76,9 +76,9 @@ export default function QuotePageContent() {
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             className="relative z-10 w-full"
           >
-            <div className="w-full bg-zinc-900/40 border border-white/10 rounded-xl p-4 md:p-6 backdrop-blur-xl shadow-2xl relative overflow-hidden min-h-[500px]">
+            <div className="w-full bg-white border border-zinc-200/80 rounded-xl p-4 md:p-6 shadow-2xl relative overflow-hidden min-h-[500px]">
               {/* Glowing top line */}
-              <div className="absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-brand-accent via-amber-400 to-brand-accent animate-pulse" />
+              <div className="absolute top-0 left-0 w-full h-[3px] bg-gradient-to-r from-amber-500 via-amber-400 to-amber-600" />
 
               <iframe
                 data-tally-src="https://tally.so/embed/9qryqY?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1&formEventsForwarding=1"
