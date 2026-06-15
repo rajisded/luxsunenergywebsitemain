@@ -49,13 +49,15 @@ export default function ProductSection({
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/60" />
       </div>
 
+      <div className="flex-1" />
+
       {/* Header Info */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: false, margin: "-100px" }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 max-w-xl mx-auto"
+        className="relative z-10 max-w-xl mx-auto my-auto"
       >
         <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-white mb-2">
           {title}
@@ -66,6 +68,8 @@ export default function ProductSection({
           </p>
         )}
       </motion.div>
+
+      <div className="flex-1" />
 
       {/* Footer / Interactive Specs and CTA Buttons */}
       <div className="relative z-10 w-full max-w-4xl mx-auto flex flex-col items-center gap-8">
